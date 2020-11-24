@@ -128,3 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 deps
+cpu_features
+pybind11
+build
+bin
