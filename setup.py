@@ -1,12 +1,9 @@
-import setuptools
-from pybind11.setup_helpers import Pybind11Extension, build_ext
-from subprocess import call
-import os
+from setuptools import setup, find_packages
+from cmake_setup import *
 
-
-def setpu_cpu_features():
-    args = [ os.curdir ]
-    if not os.path.exists("cpu_features"):
-        args.append("--download")
-    call(["./scripts/get_cpu_features.sh", *args])
-
+setup(name='pycpu',
+      description='',
+      version='0.0.0.dev0',
+      ext_modules=[CMakeExtension('pycpu', sourcedir = "src")],
+      cmdclass={'build_ext': CMakeBuildExt},
+    )

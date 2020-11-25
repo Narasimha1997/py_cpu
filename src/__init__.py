@@ -1,6 +1,8 @@
 from .pycpu import get_cpu_info
 import pprint
 
+__all__ = ['CPUInfo']
+
 class FeatureFalgs(dict):
     def __init__(self, *args, **kwargs):
         super(FeatureFalgs, self).__init__(*args, **kwargs)
@@ -52,5 +54,5 @@ class CPUInfo():
         print("--------------------------------------------------------")
         print("{:<30} {:<20}".format('Feature Name', 'Is supported?'))
         print("--------------------------------------------------------")
-        for key, value in self.features.items():
+        for key, value in sorted(self.features.items()):
             print("{:<30} {:<20}".format(key, "Yes" if value else "No"))
