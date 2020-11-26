@@ -1,4 +1,4 @@
-from .pycpu import get_cpu_info
+from .bindings import get_cpu_info
 import pprint
 
 __all__ = ['CPUInfo']

@@ -3,10 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/src/cpu_features/include",
+                "${workspaceFolder}/src/pycpu/bindings/cpu_features/include",
                 "/usr/include/python3.6m",
                 "/usr/local/include/python3.6",
-                "${workspaceFolder}/src/pybind11/include"
+                "${workspaceFolder}/pybind11/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

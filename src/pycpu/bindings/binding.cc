@@ -57,7 +57,7 @@ x86_CPU GetCPUInfo() {
 }
 
 
-PYBIND11_MODULE(pycpu, mod) {
+PYBIND11_MODULE(bindings, mod) {
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
@@ -112,7 +112,7 @@ ARM_CPU GetCPUInfo() {
     return cpu;
 }
 
-PYBIND11_MODULE(pycpu, mod) {
+PYBIND11_MODULE(bindings, mod) {
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
@@ -168,7 +168,7 @@ AARCH_CPU GetCpuInfo() {
     return cpu;
 }
 
-PYBIND11_MODULE(pycpu, mod) {
+PYBIND11_MODULE(bindings, mod) {
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
@@ -214,7 +214,7 @@ MIPS_CPU GetCpuInfo() {
     return cpu;
 }
 
-PYBIND11_MODULE(pycpu, mod) {
+PYBIND11_MODULE(bindings, mod) {
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
@@ -268,7 +268,7 @@ PPC_CPU GetCpuInfo() {
     return cpu;
 }
 
-PYBIND11_MODULE(pycpu, mod) {
+PYBIND11_MODULE(bindings, mod) {
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
