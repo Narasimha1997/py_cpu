@@ -1,1 +1,7 @@
-recursive-include pybind11 *
+recursive-include src *
+recursive-include examples *
+include README.md
+include CMakeLists.txt
+include .git
+include .gitignore
+include .gitmodules

@@ -1,4 +1,4 @@
-from cmaketools import setup
+from skbuild import setup
 
 setup(
     name="pycpu",
@@ -8,7 +8,8 @@ setup(
     description="Python bindings for Google's cpu_features library.",
     url="https://github.com/Narasimha1997/py_cpu.git",
     license="Apache 2.0 License",
-    src_dir="src",
-    ext_module_hint=r"pybind11_add_module",
     has_package_data=False,
+    package_dir={"": "src"},
+    packages = ["pycpu"],
+    cmake_install_dir = "src/pycpu"
 )
