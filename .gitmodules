@@ -1,9 +1,7 @@
-[submodule "pybind11"]
+[submodule "src/pybind11"]
 	path = src/pybind11
 	url = https://github.com/pybind/pybind11.git
 	branch = stable
-
-[submodule "pybind11"]
+[submodule "src/cpu_features"]
 	path = src/cpu_features
 	url = https://github.com/Narasimha1997/cpu_features.git
-	branch = master
