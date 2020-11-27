@@ -6,3 +6,4 @@ include .git
 include .gitignore
 include .gitmodules
 include LICENSE
+include pyproject.toml

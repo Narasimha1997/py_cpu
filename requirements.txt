@@ -1,0 +1,4 @@
+wheel
+cmake
+setuptools>=42
+scikit-build
