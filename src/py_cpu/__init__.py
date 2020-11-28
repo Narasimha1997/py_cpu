@@ -4,9 +4,9 @@ import pprint
 __all__ = ['CPUInfo']
 
 
-class FeatureFalgs(dict):
+class FeatureFlags(dict):
     def __init__(self, *args, **kwargs):
-        super(FeatureFalgs, self).__init__(*args, **kwargs)
+        super(FeatureFlags, self).__init__(*args, **kwargs)
         self.__dict__ = self
 
 
@@ -16,7 +16,7 @@ class CPUInfo():
 
         # load cpu info
         self.cpu_info = get_cpu_info()
-        self.features = FeatureFalgs(self.cpu_info.features.items())
+        self.features = FeatureFlags(self.cpu_info.features.items())
 
     def as_dict(self, include_features=True):
 
