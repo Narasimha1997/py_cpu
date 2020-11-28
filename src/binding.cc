@@ -12,9 +12,10 @@
 */
 
 #if defined(CPU_FEATURES_ARCH_X86)
-# include "cpuinfo_x86.h"
+#include "cpuinfo_x86.h"
 
-typedef struct {
+typedef struct
+{
     std::string brand;
     std::string vendor;
     int family;
@@ -25,7 +26,8 @@ typedef struct {
     std::unordered_map<std::string, bool> features;
 } x86_CPU;
 
-x86_CPU GetCPUInfo() {
+x86_CPU GetCPUInfo()
+{
     const cpu_features::X86Info cpu_info = cpu_features::GetX86Info();
     //set the structure fields :
     x86_CPU cpu;
@@ -35,15 +37,14 @@ x86_CPU GetCPUInfo() {
     cpu.model = cpu_info.model;
     cpu.stepping = cpu_info.stepping;
     cpu.uarch = cpu_features::GetX86MicroarchitectureName(
-        cpu_features::GetX86Microarchitecture(&cpu_info)
-    );
+        cpu_features::GetX86Microarchitecture(&cpu_info));
 
-    for(int i = 0; i < cpu_features::X86_LAST_; i ++) {
+    for (int i = 0; i < cpu_features::X86_LAST_; i++)
+    {
         const auto enum_val = static_cast<cpu_features::X86FeaturesEnum>(i);
         std::pair<std::string, bool> feature_pair(
             cpu_features::GetX86FeaturesEnumName(enum_val),
-            cpu_features::GetX86FeaturesEnumValue(&cpu_info.features, enum_val)
-        );
+            cpu_features::GetX86FeaturesEnumValue(&cpu_info.features, enum_val));
         cpu.features.insert(feature_pair);
     }
 
@@ -56,15 +57,15 @@ x86_CPU GetCPUInfo() {
     return cpu;
 }
 
-
-PYBIND11_MODULE(bindings, mod) {
+PYBIND11_MODULE(bindings, mod)
+{
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
     pybind11::bind_map<std::unordered_map<std::string, bool>>(mod, "Features");
 
     auto classExporter = pybind11::class_<x86_CPU>(mod, "CpuInfo");
-    
+
     classExporter.def(pybind11::init<>());
     classExporter.def_readonly("arch", &x86_CPU::arch);
     classExporter.def_readonly("brand", &x86_CPU::brand);
@@ -80,9 +81,10 @@ PYBIND11_MODULE(bindings, mod) {
 }
 
 #elif defined(CPU_FEATURES_ARCH_ARM)
-# include "cpuinfo_arm.h"
+#include "cpuinfo_arm.h"
 
-typedef struct {
+typedef struct
+{
     int implementer;
     int architecture;
     int variant;
@@ -91,7 +93,8 @@ typedef struct {
     std::unordered_map<std::string, bool> features;
 } ARM_CPU;
 
-ARM_CPU GetCPUInfo() {
+ARM_CPU GetCPUInfo()
+{
     const cpu_features::ArmInfo cpu_info = cpu_features::GetArmInfo();
     ARM_CPU cpu;
     cpu.implementer = cpu_info.implementer;
@@ -100,26 +103,27 @@ ARM_CPU GetCPUInfo() {
     cpu.part = cpu_info.part;
     cpu.revision = cpu_info.revision;
 
-    for(int i = 0; i < cpu_features::ARM_LAST_; i ++) {
+    for (int i = 0; i < cpu_features::ARM_LAST_; i++)
+    {
         const auto enum_val = static_cast<cpu_features::ArmFeaturesEnum>(i);
         std::pair<std::string, bool> feature_pair(
             cpu_features::GetArmFeaturesEnumName(enum_val),
-            cpu_features::GetArmFeaturesEnumValue(&cpu_info.features, enum_val)
-        );
+            cpu_features::GetArmFeaturesEnumValue(&cpu_info.features, enum_val));
         cpu.features.insert(feature_pair);
     }
 
     return cpu;
 }
 
-PYBIND11_MODULE(bindings, mod) {
+PYBIND11_MODULE(bindings, mod)
+{
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
     pybind11::bind_map<std::unordered_map<std::string, bool>>(mod, "Features");
 
     auto classExporter = pybind11::class_<ARM_CPU>(mod, "CpuInfo");
-    
+
     classExporter.def(pybind11::init<>());
     classExporter.def_readonly("implementer", &ARM_CPU::implementer);
     classExporter.def_readonly("architecture", &ARM_CPU::architecture);
@@ -135,9 +139,10 @@ PYBIND11_MODULE(bindings, mod) {
 }
 
 #elif defined(CPU_FEATURES_ARCH_AARCH64)
-# include "cpuinfo_aarch64.h"
+#include "cpuinfo_aarch64.h"
 
-typedef struct {
+typedef struct
+{
     std::unordered_map<std::string, bool> features;
     int implementer;
     int variant;
@@ -146,36 +151,38 @@ typedef struct {
     std::string arch;
 } AARCH_CPU;
 
-AARCH_CPU GetCpuInfo() {
+AARCH_CPU GetCpuInfo()
+{
     const cpu_features::Aarch64Info cpu_info = cpu_features::GetAarch64Info();
     AARCH_CPU cpu;
-    
+
     cpu.arch = "aarch64";
     cpu.variant = cpu_info.variant;
     cpu.implementer = cpu_info.implementer;
     cpu.part = cpu_info.part;
     cpu.revision = cpu.revision;
 
-    for(int i = 0; i < cpu_features::AARCH64_LAST_; i ++) {
+    for (int i = 0; i < cpu_features::AARCH64_LAST_; i++)
+    {
         const auto enum_val = static_cast<cpu_features::Aarch64FeaturesEnum>(i);
         std::pair<std::string, bool> feature_pair(
             cpu_features::GetAarch64FeaturesEnumName(enum_val),
-            cpu_features::GetAarch64FeaturesEnumValue(&cpu_info.features, enum_val)
-        );
+            cpu_features::GetAarch64FeaturesEnumValue(&cpu_info.features, enum_val));
         cpu.features.insert(feature_pair);
     }
 
     return cpu;
 }
 
-PYBIND11_MODULE(bindings, mod) {
+PYBIND11_MODULE(bindings, mod)
+{
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
     pybind11::bind_map<std::unordered_map<std::string, bool>>(mod, "Features");
 
     auto classExporter = pybind11::class_<AARCH_CPU>(mod, "CpuInfo");
-    
+
     classExporter.def(pybind11::init<>());
     classExporter.def_readonly("implementer", &AARCH_CPU::implementer);
     classExporter.def_readonly("variant", &AARCH_CPU::variant);
@@ -190,38 +197,41 @@ PYBIND11_MODULE(bindings, mod) {
 }
 
 #elif defined(CPU_FEATURES_ARCH_MIPS)
-# include "cpuinfo_mips.h"
+#include "cpuinfo_mips.h"
 
-typedef struct {
+typedef struct
+{
     std::string arch;
     std::unordered_map<std::string, bool> features;
 } MIPS_CPU;
 
-MIPS_CPU GetCpuInfo() {
+MIPS_CPU GetCpuInfo()
+{
     const cpu_features::MipsInfo cpu_info = cpu_features::GetMipsInfo();
     MIPS_CPU cpu;
-    
+
     cpu.arch = "mips";
-    for(int i = 0; i < cpu_features::MIPS_LAST_; i ++) {
+    for (int i = 0; i < cpu_features::MIPS_LAST_; i++)
+    {
         const auto enum_val = static_cast<cpu_features::MipsFeaturesEnum>(i);
         std::pair<std::string, bool> feature_pair(
             cpu_features::GetMipsFeaturesEnumName(enum_val),
-            cpu_features::GetMipsFeaturesEnumValue(&cpu_info.features, enum_val)
-        );
+            cpu_features::GetMipsFeaturesEnumValue(&cpu_info.features, enum_val));
         cpu.features.insert(feature_pair);
     }
 
     return cpu;
 }
 
-PYBIND11_MODULE(bindings, mod) {
+PYBIND11_MODULE(bindings, mod)
+{
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
     pybind11::bind_map<std::unordered_map<std::string, bool>>(mod, "Features");
 
     auto classExporter = pybind11::class_<MIPS_CPU>(mod, "CpuInfo");
-    
+
     classExporter.def(pybind11::init<>());
     classExporter.def_readonly("arch", &MIPS_CPU::arch);
     classExporter.def_readonly("features", &MIPS_CPU::features);
@@ -231,11 +241,12 @@ PYBIND11_MODULE(bindings, mod) {
 }
 
 #elif defined(CPU_FEATURES_ARCH_PPC)
-# include "cpuinfo_ppc.h"
+#include "cpuinfo_ppc.h"
 
-typedef struct {
-    std::string platform;  
-    std::string model;     
+typedef struct
+{
+    std::string platform;
+    std::string model;
     std::string machine;
     std::string cpu;
     std::string base_platform;
@@ -243,7 +254,8 @@ typedef struct {
     std::unordered_map<std::string, bool> features;
 } PPC_CPU;
 
-PPC_CPU GetCpuInfo() {
+PPC_CPU GetCpuInfo()
+{
     const cpu_features::PPCInfo cpu_info = cpu_features::GetPPCInfo();
     const cpu_features::PPCPlatformStrings platform = cpu_features::GetPPCPlatformStrings();
 
@@ -256,26 +268,27 @@ PPC_CPU GetCpuInfo() {
     cpu.cpu = platform.cpu;
     cpu.base_platform = platform.type.base_platform;
 
-    for(int i = 0; i < cpu_features::PPC_LAST_; i ++) {
+    for (int i = 0; i < cpu_features::PPC_LAST_; i++)
+    {
         const auto enum_val = static_cast<cpu_features::PPCFeaturesEnum>(i);
         std::pair<std::string, bool> feature_pair(
             cpu_features::GetPPCFeaturesEnumName(enum_val),
-            cpu_features::GetPPCFeaturesEnumValue(&cpu_info.features, enum_val)
-        );
+            cpu_features::GetPPCFeaturesEnumValue(&cpu_info.features, enum_val));
         cpu.features.insert(feature_pair);
     }
-    
+
     return cpu;
 }
 
-PYBIND11_MODULE(bindings, mod) {
+PYBIND11_MODULE(bindings, mod)
+{
     mod.doc() = "Cross-platform CPU features library. Built on Google's cpu_features.";
 
     //Bind the feature-map
     pybind11::bind_map<std::unordered_map<std::string, bool>>(mod, "Features");
 
     auto classExporter = pybind11::class_<PPC_CPU>(mod, "CpuInfo");
-    
+
     classExporter.def(pybind11::init<>());
     classExporter.def_readonly("platform", &PPC_CPU::platform);
     classExporter.def_readonly("model", &PPC_CPU::model);
