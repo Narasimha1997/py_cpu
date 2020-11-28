@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(pycpu)
+project(py_cpu)
 
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")

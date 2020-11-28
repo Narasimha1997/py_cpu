@@ -1,7 +1,7 @@
-import pycpu
+import py_cpu
 
 #get cpu info
-cpu_info = pycpu.CPUInfo()
+cpu_info = py_cpu.CPUInfo()
 
 #get a list of features table as dict
 cpu_info.get_features_as_dict()
