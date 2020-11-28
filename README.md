@@ -4,7 +4,7 @@ Python bindings for Google's [cpu_features](https://github.com/google/cpu_featur
 ### Quick start
 To use py_cpu, You can directly download and install the pre-built wheel file, using the command below:
 ```
-pip install py_cpu
+pip install py-cpu
 ```
 
 (For x86, the pre-built wheel will be installed automatically, on other platforms, the source distribution will be downloaded and the package will be built on the platform natively)
@@ -30,8 +30,8 @@ pip install py_cpu/   #-- the repo root directory
 
 If you are using an older version of pip, the build-system packages will not be automatically installed, in that case,
 ```
-pip3 install -r py_cpu/requirements.txt   #manually install the build requirements
-pip3 install py_cpu/                      #then install the package
+pip install -r py_cpu/requirements.txt   #manually install the build requirements
+pip install py_cpu/                      #then install the package
 ```
 
 To build `sdist` and `bdist_wheel` you can just run `setup.py` as follows:
