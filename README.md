@@ -152,3 +152,8 @@ The binding code is written in C++ and uses `pybind11` to build a `Cpython` exte
 The entire structure is a read-only object for python and cannot be modified, this makes the implementation much more easy and faster. During the build-phase, `CMake` first compiles Google's cpu_features library as a submodule and builds a Position independent object code (PIC), since the Cpython extension is a shared dynamic library. Then the target is compiled with Pybind11 to create the final cpython extension. `__init__.py` is just like a glue which which provides caching functionality by storing it inside an object, so you can only init once and use it throughout the lifecycle of the application.
 
 **Note** : This python binding is not an offical Google release. The project respects the license and distribution terms of both `cpu_features` and `pybind11` by adding them as sub-modules - this helps us to keep the original implementation as it is.
+
+### Contributing
+If you like to contribute code to this repo, you are always welcome. 
+I would encourage newbies to take up the tasks, as it would allow them to get into the open source world.
+Also, please do test it on variety of platforms. Please do raise issues if you have any problems.
