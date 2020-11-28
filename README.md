@@ -81,7 +81,7 @@ cpu_info = py_cpu.CPUInfo()
 features_dict = cpu_info.get_features_as_dict()
 print(features_dict['avx'])
 
-# returns a FeatureFalgs object, this is simple to use because you can use . operator instead of subscripting.
+# returns a FeatureFlags object, this is simple to use because you can use . operator instead of subscripting.
 
 features = cpu_info.get_features()
 print(features.avx)
