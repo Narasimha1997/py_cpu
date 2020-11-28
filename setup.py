@@ -4,7 +4,7 @@ long_description = open('README.md').read()
 
 setup(
     name="py_cpu",
-    version="0.1.0",
+    version="0.1.2",
     author="Narasimha Prasanna HN",
     author_email="narasimhaprasannahn@gmail.com",
     description="Python bindings for Google's cpu_features library.",
@@ -15,7 +15,7 @@ setup(
     packages = ["py_cpu"],
     cmake_install_dir = "src/py_cpu",
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: System :: Hardware',
         'License :: OSI Approved :: Apache Software License',
