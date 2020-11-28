@@ -15,7 +15,7 @@ setup(
     packages = ["py_cpu"],
     cmake_install_dir = "src/py_cpu",
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: System :: Hardware',
         'License :: OSI Approved :: Apache Software License',
