@@ -1,6 +1,6 @@
-name: Python package
+name: Python package build test
 
-on: workflow_dispatch
+on: [workflow_dispatch]
 
 jobs:
   build:
