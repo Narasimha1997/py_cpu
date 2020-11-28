@@ -29,6 +29,15 @@ class CPUInfo():
         
         return info_dict
     
+    def get_info_fields(self) :
+
+        info_fields = []
+        for _attr in dir(self.cpu_info):
+            if not _attr.startswith("_"):
+                info_fields.append(_attr)
+
+        return info_fields        
+    
     def pprint(self):
         dict_type = self.as_dict()
         pprint.pprint(dict_type)
@@ -56,3 +65,6 @@ class CPUInfo():
         print("--------------------------------------------------------")
         for key, value in sorted(self.features.items()):
             print("{:<30} {:<20}".format(key, "Yes" if value else "No"))
+    
+    def __getitem__(self, attr):
+        return getattr(self.cpu_info, attr)

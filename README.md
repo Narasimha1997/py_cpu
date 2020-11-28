@@ -86,3 +86,66 @@ print(features_dict['avx'])
 features = cpu_info.get_features()
 print(features.avx)
 ```
+
+#### Get the general info about the hardware
+Apart from features and SOCs, you can also query the general info - about architecture type, vendor etc.
+These fields are different for different hardware. 
+
+```python3
+import pycpu
+cpu_info = pycpu.CPUInfo()
+
+#get list of field names
+supported_fields = cpu_info.get_info_fields()
+
+#example, on x86
+# ['arch', 'brand', 'family', 'features', 'model', 'stepping', 'uarch', 'vendor']
+
+#query the fields: Because the cpu_info object supports subscripting
+
+brand_name = cup_info['brand']
+
+#if you want the entire object as a dict
+info_dict = cpu_info.as_dict()
+
+#if you want the entire object but exclude features
+info_dict_without_features = cpu_info.as_dict(include_features = False)
+
+```
+
+#### 5. Print functions
+If you just want to print the output, you can use any of these two methods.
+These methods will be just for a fancy fun use.
+
+Pretty-Print Dict - This function uses pprint internally.
+```python3
+import pycpu
+#obtain CPU info
+cpu_info = pycpu.CPUInfo()
+
+#call pprint method
+cpu_info.pprint()
+```
+
+Print as table - This function uses python formatting/spacings to display the list as a table.
+```python3
+import pycpu
+#obtain CPU info
+cpu_info = pycpu.CPUInfo()
+
+#call pprint method
+cpu_info.print_as_table()
+```
+
+### Guide for developers:
+If you want to add new features, this section is for you.
+The repository depends on `pybind11` and the original `cpu_features` repository by Google. Both of these are includes as submodules under `src/`.  To get the complete codebase, you have to clone the submodules as well. Just run these commands from the project directory :
+
+```
+git submodule init 
+git submodule update
+```
+Or you can clone the repo recursively.
+
+#### Under the hood details:
+The binding code is written in C++ and uses `pybind11` to build `Cpython` extension. 
