@@ -1,10 +1,10 @@
 # py_cpu
-Python bindings for Google's [cpu_features](https://github.com/google/cpu_features) library. Using this library, Python developers can check for hardware specific features and enable the respective optimizations in their software at runtime. `pycpu` provides bindings for multiple hardware architectures like `x86`, `ARM`, `AARCH64`, `MIPS` and `PPC`. 
+Python bindings for Google's [cpu_features](https://github.com/google/cpu_features) library. Using this library, Python developers can check for hardware specific features and enable the respective optimizations in their software at runtime. `py_cpu` provides bindings for multiple hardware architectures like `x86`, `ARM`, `AARCH64`, `MIPS` and `PPC`. 
 
 ### Quick start
-To use pycpu, You can directly download and install the pre-built wheel file, using the command below:
+To use py_cpu, You can directly download and install the pre-built wheel file, using the command below:
 ```
-pip install pycpu
+pip install py_cpu
 ```
 
 (For x86, the pre-built wheel will be installed automatically, on other platforms, the source distribution will be downloaded and the package will be built on the platform natively)
@@ -41,27 +41,27 @@ python3 install sdist bdist_wheel
 ```
 
 ### Usage guide:
-To use the package in your codebase, just import `pycpu`.
+To use the package in your codebase, just import `py_cpu`.
 
 ```
-import pycpu
+import py_cpu
 ```
 
 #### 1. Get the CPU info
 ```python3
-import pycpu
+import py_cpu
 
 #get cpu info
-cpu_info = pycpu.CPUInfo()
+cpu_info = py_cpu.CPUInfo()
 ```
 
 #### 2. Check for features:
 ```python3
-import pycpu
+import py_cpu
 
 
 #call this once during the program init, to avoid unnecessary compute unless required.
-cpu_info = pycpu.CPUInfo()
+cpu_info = py_cpu.CPUInfo()
 
 #check if the CPU supports AES instructions
 if cpu_info.features.aes :
@@ -73,8 +73,8 @@ else :
 
 #### 3. Get the list of supported features :
 ```python3
-import pycpu
-cpu_info = pycpu.CPUInfo()
+import py_cpu
+cpu_info = py_cpu.CPUInfo()
 
 #returns a python dictionary, you can check the feature by
 # subscripting, example : features_dict['aes'] -> either True or False
@@ -92,8 +92,8 @@ Apart from features and SOCs, you can also query the general info - about archit
 These fields are different for different hardware. 
 
 ```python3
-import pycpu
-cpu_info = pycpu.CPUInfo()
+import py_cpu
+cpu_info = py_cpu.CPUInfo()
 
 #get list of field names
 supported_fields = cpu_info.get_info_fields()
@@ -119,9 +119,9 @@ These methods will be just for a fancy fun use.
 
 Pretty-Print Dict - This function uses pprint internally.
 ```python3
-import pycpu
+import py_cpu
 #obtain CPU info
-cpu_info = pycpu.CPUInfo()
+cpu_info = py_cpu.CPUInfo()
 
 #call pprint method
 cpu_info.pprint()
@@ -129,9 +129,9 @@ cpu_info.pprint()
 
 Print as table - This function uses python formatting/spacings to display the list as a table.
 ```python3
-import pycpu
+import py_cpu
 #obtain CPU info
-cpu_info = pycpu.CPUInfo()
+cpu_info = py_cpu.CPUInfo()
 
 #call pprint method
 cpu_info.print_as_table()
